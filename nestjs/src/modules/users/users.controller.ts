@@ -12,6 +12,7 @@ import {
     ParseFilePipeBuilder,
     HttpStatus,
     Request,
+    ClassSerializerInterceptor,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -34,6 +35,7 @@ const editFileName = (req, file, callback) => {
 
 @Controller('users')
 @UseGuards(JwtAuthGuard)
+@UseInterceptors(ClassSerializerInterceptor)
 export class UsersController {
     constructor(private readonly usersService: UsersService) { }
 
@@ -45,6 +47,11 @@ export class UsersController {
     @Get('profile')
     getProfile(@CurrentUser() user: any) {
         return this.usersService.findOne(user.userId);
+    }
+
+    @Get(':id')
+    getOne(@Param('id') id: string) {
+        return this.usersService.findOne(+id);
     }
 
     @Put('profile')

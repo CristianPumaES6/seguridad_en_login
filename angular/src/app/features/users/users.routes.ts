@@ -4,8 +4,11 @@ import { UserProfileComponent } from './profile/user-profile.component';
 import { ProfileEditComponent } from './edit/profile-edit.component';
 import { authGuard } from '../../core/guards/auth.guard';
 
+import { UserDetailComponent } from './detail/user-detail.component';
+
 export const USERS_ROUTES: Routes = [
     { path: '', component: UserListComponent }, // Public list
     { path: 'profile', component: UserProfileComponent, canActivate: [authGuard] },
-    { path: 'profile/edit', component: ProfileEditComponent, canActivate: [authGuard] }
+    { path: 'profile/edit', component: ProfileEditComponent, canActivate: [authGuard] },
+    { path: ':id', component: UserDetailComponent }
 ];

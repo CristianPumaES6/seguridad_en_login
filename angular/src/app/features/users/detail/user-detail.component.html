@@ -1,0 +1,49 @@
+<div class="user-detail-container" *ngIf="user$ | async as user; else loading">
+  <mat-card class="user-card">
+    <mat-card-header>
+      <div mat-card-avatar class="user-header-image"
+           [style.background-image]="'url(' + (user.profileImagePath || 'https://material.angular.io/assets/img/examples/shiba1.jpg') + ')'">
+      </div>
+      <mat-card-title>{{ user.name }}</mat-card-title>
+      <mat-card-subtitle>User Details</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item>
+          <span matListItemIcon><mat-icon>fingerprint</mat-icon></span>
+          <span matListItemTitle>ID</span>
+          <span matListItemLine>{{ user.id }}</span>
+        </mat-list-item>
+        
+        <mat-list-item>
+          <span matListItemIcon><mat-icon>email</mat-icon></span>
+          <span matListItemTitle>Email</span>
+          <span matListItemLine>{{ user.email }}</span>
+        </mat-list-item>
+
+        <mat-list-item>
+          <span matListItemIcon><mat-icon>calendar_today</mat-icon></span>
+          <span matListItemTitle>Joined</span>
+          <span matListItemLine>{{ user.createdAt | date:'medium' }}</span>
+        </mat-list-item>
+        
+        <mat-list-item>
+           <span matListItemIcon><mat-icon>info</mat-icon></span>
+           <span matListItemTitle>Status</span>
+           <span matListItemLine>{{ user.status }}</span>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+    
+    <mat-card-actions align="end">
+      <button mat-button routerLink="/users">BACK TO LIST</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<ng-template #loading>
+  <div class="loading-spinner">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+</ng-template>

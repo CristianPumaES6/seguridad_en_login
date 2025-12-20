@@ -6,10 +6,12 @@ import { PublicUserResponse } from '../../../core/models/user-profile.models';
 import { SeoService } from '../../../core/services/seo.service';
 import { Observable, catchError } from 'rxjs';
 
+import { RouterModule } from '@angular/router';
+
 @Component({
   selector: 'app-user-list',
   standalone: true,
-  imports: [CommonModule, ...MATERIAL_MODULES],
+  imports: [CommonModule, RouterModule, ...MATERIAL_MODULES],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.scss'
 })

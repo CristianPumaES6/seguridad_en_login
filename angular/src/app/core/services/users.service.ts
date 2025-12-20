@@ -28,4 +28,8 @@ export class UsersService {
         formData.append('profileImage', image);
         return this.http.put<{ profileImagePath: string }>(`${this.apiUrl}/profile/image`, formData);
     }
+
+    getUserById(id: string): Observable<UserProfileResponse> {
+        return this.http.get<UserProfileResponse>(`${this.apiUrl}/${id}`);
+    }
 }

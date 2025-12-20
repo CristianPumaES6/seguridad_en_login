@@ -1,0 +1,25 @@
+.user-detail-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.user-card {
+  max-width: 500px;
+  width: 100%;
+}
+
+.user-header-image {
+  background-size: cover;
+  background-position: center;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+mat-list-item {
+    margin-bottom: 10px;
+}
