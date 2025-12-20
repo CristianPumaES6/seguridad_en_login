@@ -1,0 +1,19 @@
+.profile-container {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+
+.profile-card {
+    width: 100%;
+    max-width: 500px;
+}
+
+.profile-image {
+    background-size: cover;
+    background-position: center;
+}
+
+mat-card-content {
+    margin-top: 16px;
+}

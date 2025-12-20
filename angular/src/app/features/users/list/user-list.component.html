@@ -1,0 +1,22 @@
+<div class="users-container">
+    <h2>Community Members</h2>
+
+    <div class="user-grid" *ngIf="users$ | async as users">
+        <mat-card *ngFor="let user of users" class="user-card">
+            <mat-card-header>
+                <div mat-card-avatar class="user-header-image"
+                    [style.background-image]="'url(' + (user.profileImagePath || 'https://material.angular.io/assets/img/examples/shiba1.jpg') + ')'">
+                </div>
+                <mat-card-title>{{ user.name }}</mat-card-title>
+            </mat-card-header>
+            <!-- <img mat-card-image [src]="user.profileImagePath" alt="Photo of {{user.name}}"> -->
+            <mat-card-content>
+                <p>Member ID: {{ (user.id + '').substring(0, 8) }}...</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <div *ngIf="(users$ | async)?.length === 0" class="no-users">
+        <p>No public users found.</p>
+    </div>
+</div>

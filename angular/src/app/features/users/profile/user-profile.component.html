@@ -1,0 +1,19 @@
+<div class="profile-container" *ngIf="profile$ | async as profile">
+    <mat-card class="profile-card">
+        <mat-card-header>
+            <div mat-card-avatar class="profile-image"
+                [style.background-image]="'url(' + (profile.profileImagePath || 'https://material.angular.io/assets/img/examples/shiba1.jpg') + ')'">
+            </div>
+            <mat-card-title>{{ profile.name }}</mat-card-title>
+            <mat-card-subtitle>{{ profile.email }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p><strong>Status:</strong> {{ profile.status }}</p>
+            <p><strong>Joined:</strong> {{ profile.createdAt | date:'mediumDate' }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" routerLink="/users/profile/edit">Edit Profile</button>
+            <button mat-button color="warn" (click)="logout()">Logout</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
