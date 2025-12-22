@@ -4,6 +4,7 @@ import { MATERIAL_MODULES } from '../../../shared/material';
 import { UsersService } from '../../../core/services/users.service';
 import { PublicUserResponse } from '../../../core/models/user-profile.models';
 import { SeoService } from '../../../core/services/seo.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { Observable, catchError } from 'rxjs';
 
 import { RouterModule } from '@angular/router';
@@ -18,6 +19,9 @@ import { RouterModule } from '@angular/router';
 export class UserListComponent implements OnInit {
   private usersService = inject(UsersService);
   private seoService = inject(SeoService);
+  public authService = inject(AuthService);
+
+  currentUser = this.authService.currentUser;
 
   users$!: Observable<PublicUserResponse[]>;
 
