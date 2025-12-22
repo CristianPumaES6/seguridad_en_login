@@ -9,6 +9,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { UsersService } from '../../../core/services/users.service';
 import { UserProfileResponse } from '../../../core/models/user-profile.models';
 import { Observable, switchMap } from 'rxjs';
+import { ProfileImageUrlPipe } from '../../../shared/pipes/profile-image-url.pipe';
 
 @Component({
     selector: 'app-user-detail',
@@ -20,7 +21,8 @@ import { Observable, switchMap } from 'rxjs';
         MatIconModule,
         MatListModule,
         MatProgressSpinnerModule,
-        RouterLink
+        RouterLink,
+        ProfileImageUrlPipe
     ],
     templateUrl: './user-detail.component.html',
     styleUrls: ['./user-detail.component.scss']

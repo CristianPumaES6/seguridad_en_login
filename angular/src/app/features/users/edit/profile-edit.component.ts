@@ -6,11 +6,14 @@ import { MATERIAL_MODULES } from '../../../shared/material';
 import { UsersService } from '../../../core/services/users.service';
 import { SeoService } from '../../../core/services/seo.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ProfileImageUrlPipe } from '../../../shared/pipes/profile-image-url.pipe';
+
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-profile-edit',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule, ...MATERIAL_MODULES],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, ...MATERIAL_MODULES, ProfileImageUrlPipe],
   templateUrl: './profile-edit.component.html',
   styleUrl: './profile-edit.component.scss'
 })
@@ -88,6 +91,8 @@ export class ProfileEditComponent implements OnInit {
 
   handleError(err: any) {
     this.isLoading = false;
-    this.snackBar.open('Update failed: ' + (err.error?.message || 'Unknown error'), 'Close', { duration: 3000 });
+    console.error('Update error details:', err);
+    const message = err.error?.message || err.message || 'Unknown error';
+    this.snackBar.open('Update failed: ' + message, 'Close', { duration: 5000 });
   }
 }

@@ -25,7 +25,7 @@ export class UsersService {
 
     updateProfileImage(image: File): Observable<{ profileImagePath: string }> {
         const formData = new FormData();
-        formData.append('profileImage', image);
+        formData.append('file', image);
         return this.http.put<{ profileImagePath: string }>(`${this.apiUrl}/profile/image`, formData);
     }
 

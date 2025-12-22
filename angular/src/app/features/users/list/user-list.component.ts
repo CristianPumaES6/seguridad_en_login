@@ -8,11 +8,12 @@ import { AuthService } from '../../../core/services/auth.service';
 import { Observable, catchError } from 'rxjs';
 
 import { RouterModule } from '@angular/router';
+import { ProfileImageUrlPipe } from '../../../shared/pipes/profile-image-url.pipe';
 
 @Component({
   selector: 'app-user-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, ...MATERIAL_MODULES],
+  imports: [CommonModule, RouterModule, ...MATERIAL_MODULES, ProfileImageUrlPipe],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.scss'
 })

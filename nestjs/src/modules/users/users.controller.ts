@@ -79,21 +79,18 @@ export class UsersController {
     )
     async uploadProfileImage(
         @CurrentUser() user: any,
-        @UploadedFile(
-            new ParseFilePipeBuilder()
-                .addFileTypeValidator({
-                    fileType: /(jpg|jpeg|png|gif)$/,
-                })
-                .addMaxSizeValidator({
-                    maxSize: 1024 * 1024 * 5, // 5MB
-                })
-                .build({
-                    errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY,
-                }),
-        )
-        file: any,
+        @UploadedFile() file: any,
     ) {
-        return this.usersService.updateProfileImage(user.userId, file.path, user.userId);
+        if (!file) {
+            console.error('ERROR: No file received in controller');
+            return { message: 'No file uploaded' };
+        }
+
+        console.log('--- Upload Success ---');
+        console.log('File received:', file.originalname, 'Size:', file.size);
+
+        // Guardamos solo el nombre del archivo
+        return this.usersService.updateProfileImage(user.userId, file.filename, user.userId);
     }
 
     @Delete(':id')

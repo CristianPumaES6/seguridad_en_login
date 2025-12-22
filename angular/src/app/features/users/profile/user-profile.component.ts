@@ -7,11 +7,12 @@ import { UserProfileResponse } from '../../../core/models/user-profile.models';
 import { SeoService } from '../../../core/services/seo.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { Observable } from 'rxjs';
+import { ProfileImageUrlPipe } from '../../../shared/pipes/profile-image-url.pipe';
 
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [CommonModule, RouterModule, ...MATERIAL_MODULES],
+  imports: [CommonModule, RouterModule, ...MATERIAL_MODULES, ProfileImageUrlPipe],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss'
 })

@@ -7,7 +7,7 @@
             <!-- Profile Image Upload -->
             <div class="image-upload">
                 <div class="current-image"
-                    [style.background-image]="'url(' + (previewImage || currentProfileImage || 'https://material.angular.io/assets/img/examples/shiba1.jpg') + ')'">
+                    [style.background-image]="'url(' + (previewImage || (currentProfileImage | profileImageUrl)) + ')'">
                 </div>
                 <button mat-stroked-button type="button" (click)="fileInput.click()">Change Photo</button>
                 <input #fileInput type="file" hidden (change)="onFileSelected($event)"
