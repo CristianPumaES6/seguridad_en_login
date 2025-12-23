@@ -58,7 +58,7 @@ export class AuthService {
         );
     }
 
-    private setSession(authResult: LoginResponse) {
+    public setSession(authResult: LoginResponse) {
         if (isPlatformBrowser(this.platformId)) {
             localStorage.setItem(this.tokenKey, authResult.access_token);
         }

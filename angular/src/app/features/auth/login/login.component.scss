@@ -20,4 +20,39 @@ mat-card {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 16px;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+    color: #888;
+
+    &::before,
+    &::after {
+        content: '';
+        flex: 1;
+        border-bottom: 1px solid #ddd;
+    }
+
+    span {
+        padding: 0 10px;
+        font-size: 0.8rem;
+    }
+}
+
+.social-login {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .google-btn {
+        color: #db4437;
+    }
+
+    .facebook-btn {
+        color: #4267b2;
+    }
 }

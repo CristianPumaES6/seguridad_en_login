@@ -6,6 +6,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { UsersModule } from '../users/users.module';
+import { GoogleStrategy } from './strategies/google.strategy';
+import { FacebookStrategy } from './strategies/facebook.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
 
 @Module({
@@ -15,13 +17,13 @@ import { JwtStrategy } from './strategies/jwt.strategy';
         JwtModule.registerAsync({
             imports: [ConfigModule],
             useFactory: async (configService: ConfigService) => ({
-                secret: 'SECRET_KEY_DEV_ONLY', // configService.get('JWT_SECRET')
+                secret: configService.get<string>('JWT_SECRET') || '', // Changed fallback to empty string
                 signOptions: { expiresIn: '60m' },
             }),
             inject: [ConfigService],
         }),
     ],
     controllers: [AuthController],
-    providers: [AuthService, JwtStrategy],
+    providers: [AuthService, JwtStrategy, GoogleStrategy, FacebookStrategy],
 })
 export class AuthModule { }

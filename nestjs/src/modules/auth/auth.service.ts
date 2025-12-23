@@ -38,6 +38,7 @@ export class AuthService {
         return { message: 'User registered successfully' };
     }
 
+
     async login(loginDto: LoginDto) {
         const { email, password } = loginDto;
         const user = await this.usersRepository.findOne({ where: { email } });
@@ -46,6 +47,28 @@ export class AuthService {
             throw new UnauthorizedException('Invalid credentials');
         }
 
+        return this.generateToken(user);
+    }
+
+    async validateOAuthUser(profile: any) {
+        const { email, firstName, lastName } = profile;
+        let user = await this.usersRepository.findOne({ where: { email } });
+
+        if (!user) {
+            // Register user if not exists
+            user = this.usersRepository.create({
+                name: `${firstName} ${lastName}`,
+                email,
+                passwordHash: 'OAUTH_USER', // Placeholder since it's social login
+                createdByUserId: null,
+            });
+            await this.usersRepository.save(user);
+        }
+
+        return this.generateToken(user);
+    }
+
+    private generateToken(user: User) {
         const payload = { email: user.email, sub: user.id };
         return {
             access_token: this.jwtService.sign(payload),

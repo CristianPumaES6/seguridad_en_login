@@ -25,6 +25,22 @@
                     </button>
                     <a mat-button routerLink="/auth/register">Create Account</a>
                 </div>
+
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+
+                <div class="social-login">
+                    <button mat-stroked-button type="button" class="full-width google-btn" (click)="loginWithGoogle()">
+                        <mat-icon>login</mat-icon>
+                        Login with Google
+                    </button>
+                    <button mat-stroked-button type="button" class="full-width facebook-btn"
+                        (click)="loginWithFacebook()">
+                        <mat-icon>facebook</mat-icon>
+                        Login with Facebook
+                    </button>
+                </div>
             </form>
         </mat-card-content>
     </mat-card>
