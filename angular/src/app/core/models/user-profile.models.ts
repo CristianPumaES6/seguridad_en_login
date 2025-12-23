@@ -14,6 +14,7 @@ export interface UserProfileResponse {
     updatedAt: string;
     createdByUserId: string;
     updatedByUserId: string;
+    requestCount?: number;
 }
 
 export interface UpdateProfileRequest {

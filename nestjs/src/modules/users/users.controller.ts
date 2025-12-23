@@ -23,6 +23,8 @@ import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { v4 as uuidv4 } from 'uuid';
 import { existsSync, mkdirSync } from 'fs';
+import { Throttle } from '@nestjs/throttler';
+import { Public } from '../../common/decorators/public.decorator';
 
 // Helper for file naming
 const editFileName = (req, file, callback) => {
@@ -39,6 +41,7 @@ const editFileName = (req, file, callback) => {
 export class UsersController {
     constructor(private readonly usersService: UsersService) { }
 
+    @Public()
     @Get()
     findAll() {
         return this.usersService.findAll();
@@ -49,6 +52,7 @@ export class UsersController {
         return this.usersService.findOne(user.userId);
     }
 
+    @Public()
     @Get(':id')
     getOne(@Param('id') id: string) {
         return this.usersService.findOne(+id);
@@ -77,6 +81,12 @@ export class UsersController {
             }),
         }),
     )
+    @Throttle({
+        default: {
+            limit: 200,
+            ttl: 30,
+        },
+    })
     async uploadProfileImage(
         @CurrentUser() user: any,
         @UploadedFile() file: any,

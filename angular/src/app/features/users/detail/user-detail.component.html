@@ -33,6 +33,12 @@
           <span matListItemTitle>Status</span>
           <span matListItemLine>{{ user.status }}</span>
         </mat-list-item>
+
+        <mat-list-item>
+          <span matListItemIcon><mat-icon>analytics</mat-icon></span>
+          <span matListItemTitle>Invocaciones de Request</span>
+          <span matListItemLine>{{ user.requestCount || 0 }}</span>
+        </mat-list-item>
       </mat-list>
     </mat-card-content>
 

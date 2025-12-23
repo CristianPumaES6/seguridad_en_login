@@ -23,4 +23,6 @@ export class User extends AuditEntity {
 
     @Column({ default: true })
     status: boolean;
+
+    requestCount?: number;
 }

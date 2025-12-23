@@ -18,7 +18,7 @@ import { UserQuery } from './modules/users/entities/user-query.entity';
     TypeOrmModule.forFeature([UserQuery]), // For the global interceptor
     ThrottlerModule.forRoot([{
       ttl: 60000,
-      limit: 10,
+      limit: 45,
     }]),
     AuthModule,
     UsersModule,

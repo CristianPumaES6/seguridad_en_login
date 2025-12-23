@@ -11,7 +11,7 @@
             <p><strong>Status:</strong> {{ profile.status }}</p>
             <p><strong>Joined:</strong> {{ profile.createdAt | date:'mediumDate' }}</p>
         </mat-card-content>
-        <mat-card-actions>
+        <mat-card-actions> 
             <button mat-raised-button color="primary" routerLink="/users/profile/edit">Edit Profile</button>
             <button mat-button color="warn" (click)="logout()">Logout</button>
         </mat-card-actions>

@@ -22,11 +22,13 @@
                 </mat-form-field>
 
                 <div class="actions">
+
+                    <button mat-button routerLink="/users">BACK TO LIST</button>
                     <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid || isLoading">
                         <mat-spinner diameter="20" *ngIf="isLoading"></mat-spinner>
                         <span *ngIf="!isLoading">Save Changes</span>
                     </button>
-                    <button mat-button type="button" routerLink="/users/profile">Cancel</button>
+                    <button mat-button type="button" routerLink="/users/profile">Logout</button>
                 </div>
             </form>
         </mat-card-content>
